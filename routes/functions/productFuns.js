@@ -52,3 +52,18 @@ exports.adminProd = async (req, res, next) => {
       res.status(500).json({ msg: 'error' })
    }
 }
+exports.fetchProd = (req, res, next) => {
+   try {
+      Product.findOne({ _id: req.body._id }).exec((err, data) => {
+         if (err) {
+            res.json({ msg: 'error' })
+         }
+         if (data) {
+            res.json({ msg: "success", product: data })
+         }
+      })
+   }
+   catch (err) {
+      res.json({ msg: 'error' })
+   }
+}

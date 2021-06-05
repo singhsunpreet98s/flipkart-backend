@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 exports.adminAuthentication = (req, res, next) => {
    try {
-      console.log(req.headers.authorization)
+
       const token = req.headers.authorization.split(" ")[1]
       jwt.verify(token, process.env.JWTKEY, (err, decoded) => {
          if (err) {

@@ -13,17 +13,14 @@ exports.login = async (req, res, next) => {
             if (user) {
                if (user.authenticate(password)) {
                   const token = jwt.sign({ _id: user._id, admin: user.admin }, process.env.JWTKEY, { expiresIn: '1d' })
-
-                  // const cart = Cart.find({ user: user._id })
-
-                  const { admin, fistName, lastName, email, phone } = user
+                  const { admin, firstName, lastName, email, phone } = user
                   return res.json({
                      msg: "success",
                      data: {
                         token: token,
                         user: {
                            admin: admin,
-                           fullName: `${fistName} ${lastName}`,
+                           fullName: `${firstName} ${lastName}`,
                            email: email,
                            phone: phone,
                            cart: []
