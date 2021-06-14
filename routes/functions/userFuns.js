@@ -53,11 +53,11 @@ exports.signup = async (req, res, next) => {
          phone: phone
       });
       await usr.save()
-      return res.json({ sg: 'success', data: usr })
+      return res.json({ msg: 'success', data: usr })
    }
    catch (err) {
       console.log(err)
-      return res.json({ msg: 'error' })
+      return res.json({ msg: 'There was error while creating account' })
    }
 }
 exports.adminLogin = async (req, res, next) => {
