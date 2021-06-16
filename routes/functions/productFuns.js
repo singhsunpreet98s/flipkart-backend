@@ -22,14 +22,17 @@ exports.addProduct = async (req, res, next) => {
 }
 exports.getProducts = async (req, res, next) => {
    try {
-      await Product.find().exec((err, data) => {
-         if (err) {
-            return res.json({ msg: 'error' })
-         }
-         if (data) {
-            res.status(201).json({ msg: "success", products: data })
-         }
-      })
+      await Product.find()
+         .populate({ path: 'owner', select: " firstName" })
+         .select('-createdAt -updatedAt -__v -productDesc')
+         .exec((err, data) => {
+            if (err) {
+               return res.json({ msg: 'error' })
+            }
+            if (data) {
+               res.status(201).json({ msg: "success", products: data })
+            }
+         })
    }
    catch (err) {
       return res.json({ msg: 'error' })

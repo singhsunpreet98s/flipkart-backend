@@ -23,11 +23,13 @@ catch (e) {
 const userRoute = require('./routes/userRoutes')
 const productRoute = require('./routes/productRoute')
 const cartRoute = require('./routes/cartRoute')
+const orderRoute = require('./routes/orderRoute')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/user', userRoute)
 app.use('/cart', cartRoute)
 app.use('/product', productRoute)
+app.use('/order', orderRoute)
 app.listen(process.env.PORT, () => {
    console.log(`server is running at port localhost:${process.env.PORT}`)
 })
